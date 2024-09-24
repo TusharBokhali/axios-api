@@ -1,0 +1,71 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  width: 100%;
+  height: 100vh;
+}
+.getData{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  padding: 20px 5px;
+  flex-wrap: wrap;
+
+}
+.AllForms{
+  width: 80%;
+  border: 1px solid black;
+  margin: auto;
+  padding: 20px 5px;
+}
+.center{
+  text-align: center;
+}
+.center button{
+  padding: 10px 25px;
+  border-radius: 7px;
+  background-color: rgb(112, 144, 155);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+input{
+  width: calc(300px - 10px);
+  margin: 5px;
+  padding: 10px 25px;
+  border-radius: 7px;
+  font-size: 18px;
+}
+input::placeholder{
+  font-size: 16px ;
+}
+table{
+  margin: 10px auto;
+}
+.center,.centers{
+  text-align: center;
+}
+.center input{
+  width: 20px;
+  padding: 0;
+}
+.edits{
+  padding: 10px 25px;
+  border-radius: 7px;
+  color: white;
+  background-color: green;
+  border:none;
+  cursor: pointer;
+}
+.delete{
+  background-color: red;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 25px;
+  color: white;
+  cursor: pointer;
+  margin: 5px;
+}
