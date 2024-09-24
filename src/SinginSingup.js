@@ -13,37 +13,43 @@ function SinginSingup() {
   let [categories,setCategories] = useState("")
   let [views,setViews] = useState(false)
 
+  let clear = localStorage.getItem('Login');
+  let LoginUser = JSON.parse(clear)
+  console.log(LoginUser);
+  
+  
+
   let Logins = () => {
-    if (emails !== "" && passwords !== "") {
-       axios.post("https://service.apikeeda.com/api/v1/user/login",{
-        email:emails,
-        password:passwords
-      },{
-        "headers": {
-          "x-apikeeda-key": "w1727025495173wwh183916512zu"
-        }
-      })
-      .then((res)=>{
-        // console.log(res.data.authorization);
-        
-        setauthor(res.data.authorization);
-        alert("Login Succesfully!!");
-        setpage("Categries");
-        setBlog(true);
-        view();
-
-      }).catch(err => console.log(err.message))
-
-    } 
-    
-    setemail("");
-    setpassswords("");
-    console.log(Data)
-  }
-
-  let SingIn = () => {
-    setpage("SingUp");
-  };
+      if (emails !== "" && passwords !== "") {
+        axios.post("https://service.apikeeda.com/api/v1/user/login",{
+          email:emails,
+          password:passwords
+        },{
+          "headers": {
+            "x-apikeeda-key": "w1727025495173wwh183916512zu"
+          }
+        })
+        .then((res)=>{
+          setauthor(res.data.authorization);
+          alert("Login Succesfully!!");
+          setpage("Categries");
+          setBlog(true);
+          view();
+          
+              }).catch(err =>alert("Account Not Found Create The New Account!!"))
+              
+            } 
+            let user = [emails,passwords]
+            localStorage.setItem('Login',JSON.stringify(user));
+            
+            setemail("");
+            setpassswords("");
+            
+          }
+          
+        let SingIn = () => {
+          setpage("SingUp");
+        };
 
   let SingUp = () =>{
     console.log(names)
@@ -59,16 +65,13 @@ function SinginSingup() {
       }
     })
     .then((res)=>{
-      console.log(res);
       setData(res.data.data)
     }).catch(err=>console.log(err.massage));
     setemail("")
     setnames("")
     setpassswords("")
     setpage("Login")
-    
   }
-
 
   useEffect(() => {
     view()
@@ -107,8 +110,7 @@ function view(){
         }
       })
       .then((res)=>{
-        console.log(res);
-        
+        // console.log(res);
       })
 }
    
@@ -159,6 +161,7 @@ function view(){
               <div>
                 <button onClick={SingUp}>Sing Up</button>
               </div>
+              <div style={{color : 'black',cursor:'pointer'}} onClick={()=>{setpage("Login")}} >Login</div>
             </div>
           </div>
         </div> 
@@ -176,10 +179,12 @@ function view(){
           <tr>
             <th>Name</th>
             <th>Id</th>
+            <th>__v</th>
           </tr>
           <tr>
             <td>{categories.name}</td>
             <td>{categories._id}</td>
+            <td>{categories.__v}</td>
           </tr>
           </table>
         </div>
